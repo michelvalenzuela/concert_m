@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Concert Manager</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="bg-gray-50">
+    <div class="p-2 bg-gray-900 inset-y-0 fixed shadow-lg w-52">
+      <div class="w-12 h-12 mx-auto mt-3 bg-gradient-to-bl from-indigo-700 drop-shadow rounded-full text-white"></div>
+      
+      <div class="mt-8">
+        <%= link_to bands_path, :action => 'index' do %>
+        <div class="cursor-pointer px-5 py-2 rounded block flex bg-gray-800 transition duration-400 ease-in-out hover:bg-black hover:shadow mb-3">
+          <span class="my-auto w-3 h-3 bg-gradient-to-bl from-purple-400 to-pink-500 rounded-full mr-3"></span>
+          <span class="text-gray-50 select-none">Bandas</span>
+        </div>
+        <% end %>
+        
+        <%= link_to concerts_path, :action => 'index' do %>
+          <div class="cursor-pointer px-5 py-2 rounded block flex bg-gray-800 transition duration-400 ease-in-out hover:bg-black hover:shadow">
+            <span class="my-auto w-3 h-3 bg-gradient-to-bl from-green-400 to-blue-500 rounded-full mr-3"></span>
+            <span class="text-gray-50 select-none">Conciertos</span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="ml-52 flex justify-center">
+      <div class="block w-5/6">
+        <%= yield %>
+      </div>
+    </div>
+    
+  </body>
+</html>

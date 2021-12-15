@@ -1,0 +1,35 @@
+<div class="w-3/4 mx-auto mt-12">
+  <p id="notice"><%= notice %></p>
+  
+  <div class="mb-5">
+    <%= link_to 'Editar', edit_concert_path(@concert), class: "bg-gray-200 p-1 rounded hover:bg-green-400 hover:shadow" %>
+    <%= link_to 'Volver', concerts_path, class: "bg-gray-200 px-5 p-1 rounded hover:bg-black hover:text-white hover:shadow" %>
+  </div>
+
+  <p>
+    <strong>Fecha:</strong>
+    <%= @concert.datetime %>
+  </p>
+
+  <p>
+    <strong>Duración:</strong>
+    <span>
+      <%= @concert.duration %>
+      min
+    </span>
+  </p>
+
+  <p>
+    <strong>Asistentes:</strong>
+    <span>
+      <%= @concert.assistants %>
+      asistentes
+    </span>
+  </p>
+
+  <p>
+    <strong>Banda:</strong>
+    <%= @bands.find_by(id: @concert.band_id).name %>
+  </p>
+
+</div>

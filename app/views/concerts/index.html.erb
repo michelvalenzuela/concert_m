@@ -1,0 +1,66 @@
+<div class="mx-12">
+  <p id="notice"><%= notice %></p>
+
+  <div class="grid grid-cols-2 h-12 mt-10 mb-2 sticky top-2 bg-gray-50 opacity-90">
+    <div class="col-start">
+      <span class="text-4xl pl-5 my-auto">Conciertos</span>
+    </div>
+    <div class="col-end-4 my-auto">
+      <%= link_to 'Nuevo concierto', new_concert_path, class: "transition duration-200 ease-in-out bg-gray-200 hover:bg-indigo-600 hover:text-white font-medium py-2 px-10 rounded" %>
+    </div>
+  </div>
+
+  <div class="space-y-2 mb-10">
+    <% (@concerts.order(datetime: :desc)).each do |concert| %>
+    <div class="flex justify-between group bg-gray-100 rounded-lg transition-shadow	hover:shadow-inner px-5">
+      <div class="mr-3 py-4 w-3/6">
+        <div class="text-xl">
+          <%= concert.datetime.strftime("%Y/%m/%d %H:%M ") %>
+        </div>
+        <div>
+          <%= concert.duration %> min
+        </div>
+      </div>
+
+      <div class="my-auto w-full">
+        <div class="text-2xl">
+          <%= concert.band.name %>
+        </div>
+        <div>
+          <span>
+            <%= concert.assistants %>
+            asistentes
+          </span>
+        </div>
+      </div>
+
+      <div class="group my-auto space-x-4 w-5/6 flex justify-end">
+        <div class="flex space-x-4 mr-8">
+          <div title="Ver">
+            <%= link_to concert do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-0 text-gray-400 hover:text-blue-400 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            <% end %>
+          </div>
+          
+          <div title="Editar">
+            <%= link_to edit_concert_path(concert) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-0 text-gray-400 hover:text-green-400 group-hover:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+            <% end %>
+          </div>
+        </div>
+
+        <span class="font-semibold text-gray-400 hover:text-red-800" title="Cancela este evento">
+          <%= link_to 'cancelar evento', concert, method: :delete, data: { confirm: 'Are you sure?'} %>
+        </span>
+      </div>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+</div>

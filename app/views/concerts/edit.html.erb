@@ -1,0 +1,12 @@
+<div class="border-4 border-green-400 mx-auto rounded w-1/3 mt-20 bg-green-100 p-5 shadow-lg">
+    <h1 class="text-3xl">Editando Concierto</h1>
+    <div class="flex justify-left mb-5">
+    
+    <div class="flex justify-left mb-5"></div>
+        <%= link_to 'Mostrar', @concert,  class: "bg-green-400 mr-2 px-3 py-1 rounded hover:bg-black text-white hover:shadow text-sm" %>
+        <%= link_to 'Volver', concerts_path, class: "bg-green-400 px-3 py-1 rounded hover:bg-black text-white hover:shadow text-sm" %>
+    </div>
+    
+    <%= render 'form', concert: @concert %>
+
+</div>

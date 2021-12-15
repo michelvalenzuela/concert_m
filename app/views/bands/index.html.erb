@@ -1,0 +1,83 @@
+
+<div class="mx-12">
+  <p id="notice"><%= notice %></p>
+
+  <div class="grid grid-cols-2 h-12 mt-10 mb-2 sticky top-2 bg-gray-50 opacity-90">
+    <div class="col-start">
+      <span class="text-4xl pl-5 my-auto">Bandas</span>
+    </div>
+    <div class="col-end-4 my-auto">
+      <%= link_to 'Nueva Banda', new_band_path, class: "transition duration-200 ease-in-out bg-gray-200 hover:bg-indigo-600 hover:text-white font-medium py-2 px-10 rounded" %>
+    </div>
+  </div>
+  
+  <div class="space-y-2 mb-10">
+    <% @bands.each do |band| %>
+      <div class="flex justify-between group bg-gray-100 rounded-lg transition-shadow	hover:shadow-inner">
+
+        <div class="flex w-2/6 items-center p-4 pr-6 bg-gray-200 rounded-l-lg">
+          <div class="mr-3">
+            <div title="Editar">
+              <%= link_to edit_band_path(band) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-0 text-gray-300 hover:text-green-500 group-hover:opacity-100 transition duration-100 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                </svg>
+              <% end %>
+            </div>
+            
+            <div title="Ver">
+              <%= link_to band do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-0 text-gray-300 hover:text-blue-500 group-hover:opacity-100 transition duration-100 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              <% end %>
+            </div>
+          </div>
+  
+          <div class="grid grid-rows-2 grid-flow-col">
+            <div class="text-lg font-medium">
+              <%= band.name %>
+            </div>
+            <div class="text-sm">
+              <%= band.crew %>
+              <span>integrantes</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex space-x-10 items-center">
+          <div class="inline-block">
+            <span class="block text-2xl">
+              <%= band.concerts.count %>
+            </span>
+            <span class="block text-sm">conciertos</span>
+          </div>
+          <div class="inline-block">
+            <span class="block text-2xl">
+              <%= band.concerts.sum(:assistants) %>
+            </span>
+            <span class="block text-sm">total asistentes</span>
+          </div>
+          <div class="inline-block">
+            <span class="block text-2xl">
+              <%= band.debut %>
+            </span>
+            <span class="block text-sm">debut</span>
+          </div>
+
+        </div>
+
+
+        <div class="self-center mr-5" title="Terminar Contrato">
+          <%= link_to band, method: :delete, data: { confirm: 'Terminar contrato con esta banda?' } do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-300 hover:text-red-700 transition duration-100 ease-in-out" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

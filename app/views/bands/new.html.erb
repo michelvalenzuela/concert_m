@@ -1,0 +1,10 @@
+<div class="border-4 border-gray-400 mx-auto rounded w-1/3 mt-20 bg-gray-200 p-5 shadow-lg">
+    <h1 class="text-3xl mb-5">Nueva Banda</h1>
+    <%= render 'form', band: @band %>
+    <%= link_to bands_path do %>
+        <div class="py-1 mx-8 rounded bg-gray-300 hover:bg-gray-400 text-center mt-2 w-full mx-auto">
+            <span>volver</span>
+        </div>
+    <% end %>
+</div>
+

@@ -1,0 +1,37 @@
+<%= form_with(model: concert) do |form| %>
+  <% if concert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(concert.errors.count, "error") %> prohibited this concert from being saved:</h2>
+
+      <ul>
+        <% concert.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-2">
+    <span class="mr-2">Fecha y hora</span>
+    <%= form.datetime_field :datetime, type: "datetime-local", class: "rounded p-2 w-full" %>
+  </div>
+
+  <div class="mb-2">
+    <span>Duración:</span>
+    <%= form.number_field :duration, class: "rounded p-2 w-full" %>
+  </div>
+
+  <div class="mb-2">
+    <span>Asistentes:</span>
+    <%= form.number_field :assistants, class: "rounded p-2 w-full" %>
+  </div>
+
+  <div class="mb-2">
+    <span>Banda</span>
+    <%= form.collection_select(:band_id, Band.all, :id, :name, {}, {class: "w-full p-2"}) %>
+  </div>
+
+  <div class="flex justify-center">
+    <%= form.submit "Guardar", class: "py-1 rounded bg-gray-300 hover:bg-green-400 text-center mt-5 w-full" %>
+  </div>
+<% end %>
